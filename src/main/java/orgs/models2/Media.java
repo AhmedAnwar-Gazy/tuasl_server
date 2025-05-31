@@ -1,7 +1,8 @@
 package orgs.models2;
 
-import orgs.tuasl_clint.utils.DatabaseConnectionSQLite;
-
+// 1. Changed import for MySQL database connection
+import jdk.internal.foreign.SystemLookup;
+import orgs.utils.DatabaseConnection;
 import java.math.BigInteger;
 import java.sql.*;
 
@@ -42,6 +43,7 @@ public class Media {
         this.uploadedAt = uploadedAt;
     }
 
+    // Getters and Setters (remain unchanged)
     public BigInteger getMediaId() { return mediaId; }
     public void setMediaId(BigInteger mediaId) { this.mediaId = mediaId; }
     public BigInteger getUploaderUserId() { return uploaderUserId; }
@@ -67,17 +69,33 @@ public class Media {
 
     public boolean save() throws SQLException {
         String sql = "INSERT INTO media (uploader_user_id, file_name, file_path_or_url, mime_type, file_size_bytes, thumbnail_url, duration_seconds, width, height, uploaded_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement statement = DatabaseConnectionSQLite.getInstance().getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setLong(1, uploaderUserId != null ? uploaderUserId.longValue() : 0);
+        // 2. Changed to use DatabaseConnection
+        SystemLookup DatabaseConnection;
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+             PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            // Handling of uploaderUserId: Setting to 0 if null.
+            // If your MySQL 'uploader_user_id' column allows NULL and you want to store NULL,
+            // you might prefer: statement.setObject(1, uploaderUserId != null ? uploaderUserId.longValue() : null);
+            // Or: if (uploaderUserId != null) statement.setLong(1, uploaderUserId.longValue()); else statement.setNull(1, Types.BIGINT);
+            // For consistency with original, keeping the 0 for null.
+            if (uploaderUserId != null) {
+                statement.setLong(1, uploaderUserId.longValue());
+            } else {
+                // Consider if 0 is an appropriate default or if the column should be nullable
+                // and you should use statement.setNull(1, Types.BIGINT);
+                // For this conversion, I'm keeping the logic as it was (0 for null uploaderUserId).
+                statement.setLong(1, 0); // Or handle as per your DB schema (e.g., setNull)
+            }
             statement.setString(2, fileName);
             statement.setString(3, filePathOrUrl);
             statement.setString(4, mimeType);
-            statement.setLong(5, fileSizeBytes.longValue());
+            statement.setLong(5, fileSizeBytes.longValue()); // Assuming fileSizeBytes is never null based on constructor
             statement.setString(6, thumbnailUrl);
-            statement.setObject(7, durationSeconds);
+            statement.setObject(7, durationSeconds); // setObject handles null Integers appropriately
             statement.setObject(8, width);
             statement.setObject(9, height);
-            statement.setTimestamp(10, uploadedAt);
+            statement.setTimestamp(10, uploadedAt); // Assuming uploadedAt is never null based on constructor
 
             boolean isInserted = statement.executeUpdate() > 0;
             if (isInserted) {
@@ -93,8 +111,15 @@ public class Media {
 
     public boolean update() throws SQLException {
         String sql = "UPDATE media SET uploader_user_id = ?, file_name = ?, file_path_or_url = ?, mime_type = ?, file_size_bytes = ?, thumbnail_url = ?, duration_seconds = ?, width = ?, height = ? WHERE media_id = ?";
-        try (PreparedStatement statement = DatabaseConnectionSQLite.getInstance().getConnection().prepareStatement(sql)) {
-            statement.setLong(1, uploaderUserId != null ? uploaderUserId.longValue() : 0);
+        // 2. Changed to use DatabaseConnection
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+             PreparedStatement statement = conn.prepareStatement(sql)) {
+
+            if (uploaderUserId != null) {
+                statement.setLong(1, uploaderUserId.longValue());
+            } else {
+                statement.setLong(1, 0); // Or handle as per your DB schema
+            }
             statement.setString(2, fileName);
             statement.setString(3, filePathOrUrl);
             statement.setString(4, mimeType);
@@ -103,7 +128,7 @@ public class Media {
             statement.setObject(7, durationSeconds);
             statement.setObject(8, width);
             statement.setObject(9, height);
-            statement.setLong(10, mediaId.longValue());
+            statement.setLong(10, mediaId.longValue()); // Assuming mediaId is never null for an update
 
             return statement.executeUpdate() > 0;
         }
@@ -111,8 +136,10 @@ public class Media {
 
     public boolean delete() throws SQLException {
         String sql = "DELETE FROM media WHERE media_id = ?";
-        try (PreparedStatement statement = DatabaseConnectionSQLite.getInstance().getConnection().prepareStatement(sql)) {
-            statement.setLong(1, mediaId.longValue());
+        // 2. Changed to use DatabaseConnection
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+             PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setLong(1, mediaId.longValue()); // Assuming mediaId is never null for a delete
             return statement.executeUpdate() > 0;
         }
     }
