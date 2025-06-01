@@ -2,6 +2,8 @@ package orgs.models2;
 
 import orgs.utils.DatabaseConnection;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 
 public class User {
@@ -254,5 +256,33 @@ public class User {
             }
         }
         return null;
+    }
+
+
+        public String getPasswordHash() {
+            if (hashedPassword == null || hashedPassword.isEmpty()) {
+                return null;
+            }
+
+            try {
+                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+                byte[] encodedHash = digest.digest(hashedPassword.getBytes());
+                return bytesToHex(encodedHash);
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException("Hashing algorithm not found", e);
+            }
+        }
+
+
+
+
+    private static String bytesToHex(byte[] hash) {
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : hash) {
+            String hex = Integer.toHexString(0xff & b);
+            if (hex.length() == 1) hexString.append('0');
+            hexString.append(hex);
+        }
+        return hexString.toString();
     }
 }
