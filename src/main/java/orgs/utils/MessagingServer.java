@@ -434,7 +434,9 @@ public class MessagingServer {
             }
 
             String[] callArgs = args.split(" ");
-            if (callArgs.length != 2) {
+            System.out.println("Raw calleeId string: " + callArgs[0] + " (Unicode: " + (int) callArgs[0].charAt(0) + ")");
+            System.out.println("Length in callArgs :     "  +callArgs.length);
+            if (callArgs.length != 3) {
                 out.println("ERROR: CALL_USAGE: CALL <callee_id> <action_type>");
                 return;
             }
