@@ -235,6 +235,7 @@ public class MessagingServer {
             System.out.println("User " + currentUserId + " logged out.");
             currentUserId = null; // Clear the session's user ID
             out.println("LOGOUT_SUCCESS");
+            System.out.println("Goodbye, we hope you had a great time");
         }
 
         private void handleUpdateUserInfo(String args) throws SQLException {
