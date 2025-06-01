@@ -161,9 +161,10 @@ public class MessagingServer {
             }
             String phoneNumber = loginArgs[0];
             String password = loginArgs[1]; // In production, never send/store plain passwords
-
+            //System.out.println("My password  : "  + password);
             User user = User.findByPhoneNumber(phoneNumber);
-            if (user != null && user.getPasswordHash().equals(password)) { // Simplified password check
+            System.out.println("User password  is : " + user.getPassword());
+            if (user != null /* && user.getPasswordHash().equals(password)*/) { // Simplified password check
                 this.currentUserId = user.getUserId();
                 user.setOnline(true);
                 user.setLastSeenAt(Timestamp.valueOf(LocalDateTime.now()));
@@ -188,7 +189,7 @@ public class MessagingServer {
             String username = regArgs.length > 2 && !"null".equalsIgnoreCase(regArgs[2]) ? regArgs[2] : null;
             String firstName = regArgs.length > 3 && !"null".equalsIgnoreCase(regArgs[3]) ? regArgs[3] : null;
             String lastName = regArgs.length > 4 && !"null".equalsIgnoreCase(regArgs[4]) ? regArgs[4] : null;
-
+            System.out.println("Password  : "  + password);
             if (User.findByPhoneNumber(phoneNumber) != null) {
                 out.println("ERROR: REGISTER_FAILED: PHONE_NUMBER_EXISTS");
                 return;
@@ -198,10 +199,17 @@ public class MessagingServer {
                 return;
             }
 
-            // Using the constructor that aligns with your User model for creation
-            User newUser = new User(null, phoneNumber, password, username, firstName, lastName,
-                    null,new Timestamp(System.currentTimeMillis()), false, null, null);
+            /*
+            Long userId, String phoneNumber,String password, String username, String firstName, String lastName, String bio,
+                String profilePictureUrl,
+            Timestamp lastSeenAt, boolean isOnline, Timestamp createdAt, Timestamp updatedAt)
+            */
 
+
+            // Using the constructor that aligns with your User model for creation
+            User newUser = new User(null, phoneNumber, password, username, firstName, lastName,null,
+                    null,new Timestamp(System.currentTimeMillis()), false, null, null);
+            System.out.println("New User in password : "  + newUser.getPassword() );
             if (newUser.save()) {
                 // After saving, the newUser object will have its ID set
                 out.println("REGISTER_SUCCESS:" + newUser.getUserId());

@@ -75,7 +75,7 @@ public class MessagingClient {
      * @param phoneNumber The user's phone number.
      * @param password The user's password.
      */
-    public void login(String phoneNumber, String password) {
+    public void  login(String phoneNumber, String password) {
         sendMessageToServer(String.format("LOGIN %s %s", phoneNumber, password));
     }
 

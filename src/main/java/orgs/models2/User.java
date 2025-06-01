@@ -9,6 +9,7 @@ import java.sql.*;
 public class User {
     private Long userId; // Changed from BigInteger to Long to better match MySQL INT AUTO_INCREMENT
     private String phoneNumber;
+    private String password;
     private String username;
     private String firstName;
     private String lastName;
@@ -21,12 +22,22 @@ public class User {
     private Timestamp createdAt;     // Managed by DB default for INSERT
     private Timestamp updatedAt;     // Managed by DB default for UPDATE
 
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public User() {}
 
     // Constructor for new user creation (without auto-generated ID and DB-managed timestamps)
-    public User(String phoneNumber, String username, String firstName, String lastName, String bio, String profilePictureUrl,
+    public User(String phoneNumber,String password, String username, String firstName, String lastName, String bio, String profilePictureUrl,
             /* String hashedPassword, String twoFactorSecret, */ // Removed as per DB schema
                 Timestamp lastSeenAt, boolean isOnline) {
+        this.password = password;
         this.phoneNumber = phoneNumber;
         this.username = username;
         this.firstName = firstName;
@@ -41,11 +52,12 @@ public class User {
     }
 
     // Full constructor for retrieving existing user data
-    public User(Long userId, String phoneNumber, String username, String firstName, String lastName, String bio,
+    public User(Long userId, String phoneNumber,String password, String username, String firstName, String lastName, String bio,
                 String profilePictureUrl, /* String hashedPassword, String twoFactorSecret, */
                 Timestamp lastSeenAt, boolean isOnline, Timestamp createdAt, Timestamp updatedAt) {
         this.userId = userId;
         this.phoneNumber = phoneNumber;
+        this.password= password;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -98,20 +110,21 @@ public class User {
      */
     public boolean save() throws SQLException {
         // Removed 'hashed_password', 'two_factor_secret', 'created_at', 'updated_at' from INSERT statement
-        String sql = "INSERT INTO users (phone_number, username, first_name, last_name, bio, profile_picture_url, last_seen_at, is_online) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO users (phone_number,password, username, first_name, last_name, bio, profile_picture_url, last_seen_at, is_online) " +
+                "VALUES (?,?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             statement.setString(1, phoneNumber);
-            statement.setString(2, username);
-            statement.setString(3, firstName);
-            statement.setString(4, lastName);
-            statement.setString(5, bio);
-            statement.setString(6, profilePictureUrl);
-            statement.setTimestamp(7, lastSeenAt);
-            statement.setBoolean(8, isOnline); // Use setBoolean for MySQL BOOLEAN type
+            statement.setString(2,password);
+            statement.setString(3, username);
+            statement.setString(4, firstName);
+            statement.setString(5, lastName);
+            statement.setString(6, bio);
+            statement.setString(7, profilePictureUrl);
+            statement.setTimestamp(8, lastSeenAt);
+            statement.setBoolean(9, isOnline); // Use setBoolean for MySQL BOOLEAN type
 
             boolean isInserted = statement.executeUpdate() > 0;
             if (isInserted) {
@@ -195,7 +208,7 @@ public class User {
      * @throws SQLException if a database access error occurs.
      */
     public static User findByPhoneNumber(String phoneNumber) throws SQLException {
-        String sql = "SELECT id, phone_number, username, first_name, last_name, bio, profile_picture_url, " +
+        String sql = "SELECT id, password,phone_number, username, first_name, last_name, bio, profile_picture_url, " +
                 "last_seen_at, is_online, created_at, updated_at " +
                 "FROM users WHERE phone_number = ?";
         return executeQueryAndBuildUser(sql, phoneNumber);
@@ -240,6 +253,7 @@ public class User {
                 if (resultSet.next()) {
                     User user = new User();
                     user.setUserId(resultSet.getLong("id"));
+                    user.setPassword(resultSet.getString("password"));
                     user.setPhoneNumber(resultSet.getString("phone_number"));
                     user.setUsername(resultSet.getString("username"));
                     user.setFirstName(resultSet.getString("first_name"));
