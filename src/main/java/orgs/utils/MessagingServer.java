@@ -250,7 +250,7 @@ public class MessagingServer {
             }
             String field = updateArgs[0];
             String value = updateArgs[1];
-
+           // System.out.println("Update Password :" + value);
             User user = User.findById(currentUserId);
             if (user == null) {
                 out.println("ERROR: USER_NOT_FOUND");
@@ -272,6 +272,9 @@ public class MessagingServer {
                     user.setFirstName(value);
                     updated = true;
                     break;
+                case "password":
+                    user.setPassword(value);
+                    updated = true;
                 case "last_name":
                     user.setLastName(value);
                     updated = true;

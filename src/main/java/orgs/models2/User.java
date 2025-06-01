@@ -194,7 +194,7 @@ public class User {
      * @throws SQLException if a database access error occurs.
      */
     public static User findById(Long id) throws SQLException {
-        String sql = "SELECT id, phone_number, username, first_name, last_name, bio, profile_picture_url, " +
+        String sql = "SELECT id, phone_number,password, username, first_name, last_name, bio, profile_picture_url, " +
                 "last_seen_at, is_online, created_at, updated_at " +
                 "FROM users WHERE id = ?";
         return executeQueryAndBuildUser(sql, id);
