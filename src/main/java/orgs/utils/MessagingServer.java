@@ -200,7 +200,7 @@ public class MessagingServer {
 
             // Using the constructor that aligns with your User model for creation
             User newUser = new User(null, phoneNumber, password, username, firstName, lastName,
-                    null, false, null, null, null);
+                    null,new Timestamp(System.currentTimeMillis()), false, null, null);
 
             if (newUser.save()) {
                 // After saving, the newUser object will have its ID set

@@ -4,12 +4,13 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import static orgs.Server.forwardVideo;
+//import static orgs.Server.forwardVideo;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+        /*
         new Thread(() -> {
             try {
                 ServerSocket videoSocket = new ServerSocket(6000);
@@ -65,4 +66,7 @@ public class Main {
 
     }
     }
+    */
+    }
+
 }
