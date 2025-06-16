@@ -1,14 +1,15 @@
+
 package orgs.utils;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
 
-
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/tuasil_messaging?useSSL=false&serverTimezone=UTC";
     private static final String DB_USERNAME = "root";
-    private static final String DB_PASSWORD = "12345678";
+    private static final String DB_PASSWORD = "730673145";
 
     // The single instance of the Connection
     private static Connection connection = null;
@@ -17,7 +18,6 @@ public class DatabaseConnection {
     private DatabaseConnection() {
         // Private constructor
     }
-
 
     public static synchronized Connection getConnection() throws SQLException {
         // If the connection is null or closed, re-establish it
@@ -34,7 +34,6 @@ public class DatabaseConnection {
         return connection;
     }
 
-
     public static synchronized void closeConnection() {
         if (connection != null) {
             try {
@@ -50,6 +49,4 @@ public class DatabaseConnection {
             }
         }
     }
-
-
 }

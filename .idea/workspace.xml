@@ -5,6 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="950c9466-20e7-4c17-b4b3-2036ef79a5b1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/client/ChatClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/dao/BlockedUserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/dao/ChatDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/dao/ChatParticipantDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/dao/ContactDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/dao/MediaDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/dao/MessageDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/dao/NotificationDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/dao/SessionDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/dao/UserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/dao/UserSettingsDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/model/BlockedUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/model/Chat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/model/ChatParticipant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/model/Contact.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/model/Media.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/model/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/model/Notification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/model/Session.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/model/UserSetting.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/protocol/Command.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/protocol/Request.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/protocol/Response.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/server/ChatServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/orgs/utils/LocalDateTimeAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/orgs/ClientHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/orgs/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/orgs/models2/ChatParticipant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/orgs/models2/ChatParticipant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/orgs/utils/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/orgs/utils/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/orgs/utils/MessagingClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/orgs/utils/MessagingClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/orgs/utils/MessagingServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/orgs/utils/MessagingServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,32 +61,68 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2xsIt6tGDxVxKxaLhKB9WkpmSGU" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.ChatClient.executor": "Run",
+    "Application.ChatServer.executor": "Run",
     "Application.MessagingClient.executor": "Run",
     "Application.MessagingServer.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/therdyear/java2/tuasl_server/tuasl_server/src/main",
+    "last_opened_file_path": "E:/therdyear/java2/tuasl_clint",
     "onboarding.tips.debug.path": "E:/therdyear/java2/tuasl_server/tuasl_main_server/src/main/java/orgs/Main.java",
     "project.structure.last.edited": "Global Libraries",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.side.proportion": "0.32128513"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\therdyear\java2\tuasl_server\tuasl_server2\src\main\java\orgs\protocol" />
       <recent name="E:\therdyear\java2\tuasl_server\tuasl_server\src\main" />
       <recent name="E:\therdyear\java2\tuasl_server\tuasl_server\src\main\java\orgs" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="orgs.client" />
+      <recent name="orgs.utils" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.MessagingClient">
+  <component name="RunManager" selected="Application.ChatClient">
+    <configuration name="ChatClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="orgs.client.ChatClient" />
+      <module name="tuasl_main_server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="orgs.client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChatServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="orgs.server.ChatServer" />
+      <module name="tuasl_main_server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="orgs.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MessagingClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="orgs.utils.MessagingClient" />
       <module name="tuasl_main_server" />
@@ -80,6 +151,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ChatClient" />
+        <item itemvalue="Application.ChatServer" />
         <item itemvalue="Application.MessagingClient" />
         <item itemvalue="Application.MessagingServer" />
       </list>
@@ -95,25 +168,5 @@
       <updated>1748720567181</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/orgs/Main.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/orgs/utils/MessagingClient.java</url>
-          <line>176</line>
-          <properties class="orgs.utils.MessagingClient" method="main">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

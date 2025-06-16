@@ -238,19 +238,23 @@ public class MessagingServer {
             System.out.println("Goodbye, we hope you had a great time");
         }
 
+
+        //----------------------------------------------------------------------
+
+
         private void handleUpdateUserInfo(String args) throws SQLException {
             if (currentUserId == null) {
                 out.println("ERROR: NOT_LOGGED_IN");
                 return;
             }
 
-            String[] updateArgs = args.split(" ", 2);
-            if (updateArgs.length != 2) {
+            String[] updateArgs = args.split(" ", 3);
+            if (updateArgs.length != 3) {
                 out.println("ERROR: UPDATE_USAGE: UPDATE_USER_INFO <field> <value>");
                 return;
             }
-            String field = updateArgs[0];
-            String value = updateArgs[1];
+            String field = updateArgs[1];
+            String value = updateArgs[2];
            // System.out.println("Update Password :" + value);
             User user = User.findById(currentUserId);
             if (user == null) {
@@ -314,6 +318,14 @@ public class MessagingServer {
             }
         }
 
+//        private void handleMessage(String args){
+//
+//        }
+
+        //----------------------------------------------------------------------------------
+
+
+
         private void handleMessage(String args) throws SQLException {
             if (currentUserId == null) {
                 out.println("ERROR: NOT_LOGGED_IN");
@@ -333,7 +345,7 @@ public class MessagingServer {
             String messageType = msgParts[2];
             String content = msgParts[3]; // This might contain spaces if not quoted properly by client
 
-            // Validate senderId matches currentUserId
+           // Validate senderId matches currentUserId
             if (!senderId.equals(currentUserId)) {
                 out.println("ERROR: MESSAGE_DENIED: INVALID_SENDER_ID");
                 return;
@@ -345,11 +357,16 @@ public class MessagingServer {
                 out.println("ERROR: MESSAGE_FAILED: CHAT_NOT_FOUND");
                 return;
             }
-            ChatParticipant participant = ChatParticipant.findByChatIdAndUserId(chatId, currentUserId);
+
+
+            ChatParticipant participant = ChatParticipant.findByChatIdAndUserId(chatId, senderId);
+            System.out.println(participant);
             if (participant == null) {
                 out.println("ERROR: MESSAGE_FAILED: NOT_A_PARTICIPANT");
                 return;
             }
+
+
 
             Long mediaId = null;
             Long repliedToMessageId = null;
@@ -427,6 +444,11 @@ public class MessagingServer {
                 out.println("ERROR: MESSAGE_FAILED: DB_SAVE_FAILED");
             }
         }
+
+
+
+        //----------------------------------------------------------------------------
+
 
         private void handleCall(String args) {
             if (currentUserId == null) {

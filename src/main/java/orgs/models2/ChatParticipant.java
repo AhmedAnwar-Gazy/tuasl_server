@@ -202,7 +202,7 @@ public class ChatParticipant {
                             ChatParticipantRole.fromString(resultSet.getString("role")),
                             resultSet.getTimestamp("joined_at"),
                             resultSet.getInt("unread_count"),
-                            (Long) resultSet.getObject("last_read_message_id")
+                            resultSet.getLong("last_read_message_id")
                     ));
                 }
             }
@@ -240,7 +240,7 @@ public class ChatParticipant {
                             ChatParticipantRole.fromString(resultSet.getString("role")),
                             resultSet.getTimestamp("joined_at"),
                             resultSet.getInt("unread_count"),
-                            (Long) resultSet.getObject("last_read_message_id")
+                            resultSet.getLong("last_read_message_id")
                     );
                 }
             }

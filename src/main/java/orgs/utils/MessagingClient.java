@@ -236,7 +236,6 @@ public class MessagingClient {
                                 Long chatId = Long.parseLong(msgArgs[0]);
                                 String msgType = msgArgs[1];
                                 String msgContent = msgArgs[2];
-
                                 Long mediaId = null;
                                 Long repliedTo = null;
                                 Long forwardedUser = null;
